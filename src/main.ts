@@ -5,21 +5,21 @@ import { ValidationPipe } from "./pipes/validation.pipe";
 
 
 async function start() {
-    const PORT = process.env.PORT || 5000
-    const app = await NestFactory.create(AppModule)
+    const PORT = process.env.PORT || 5000;
+    const app = await NestFactory.create(AppModule);
 
     const config = new DocumentBuilder()
-      .setTitle('Lesson 1')
-      .setDescription('rest api documentation')
-      .setVersion('1.0.0')
-      .addTag('alex')
-      .build()
-    const document = SwaggerModule.createDocument(app, config)
-    SwaggerModule.setup('/api/docs', app, document)
+        .setTitle("Lesson 1")
+        .setDescription("rest api documentation")
+        .setVersion("1.0.0")
+        .addTag("alex")
+        .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup("/api/docs", app, document);
 
-    app.useGlobalPipes(new ValidationPipe())
+    app.useGlobalPipes(new ValidationPipe());
 
-    await app.listen(PORT, () => console.log("server started" + PORT ))
+    await app.listen(PORT, () => console.log("server started" + PORT));
 }
 
-start()
+start();
