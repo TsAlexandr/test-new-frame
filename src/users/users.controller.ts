@@ -8,43 +8,44 @@ import { RolesGuard } from "../auth/role-guard";
 import { AddRoleDto } from "./dto/add-role.dto";
 import { BanUserDto } from "./dto/ban-user.dto";
 
-@ApiTags('Users')
-@Controller('users')
+@ApiTags("Users")
+@Controller("users")
 export class UsersController {
 
-  constructor(private usersService: UsersService) {
-  }
-  @ApiOperation({summary: 'Create user'})
-  @ApiResponse({status: 200, type: User})
-  @Post()
-  create(@Body() userDto: CreateUserDto) {
-    return this.usersService.createUser(userDto)
-  }
+    constructor(private usersService: UsersService) {
+    }
 
-  @ApiOperation({summary: 'Get all users'})
-  @ApiResponse({status: 200, type: [User]})
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
-  @Post()
-  getAll() {
-    return this.usersService.getAllUsers()
-  }
+    @ApiOperation({ summary: "Create user" })
+    @ApiResponse({ status: 200, type: User })
+    @Post()
+    create(@Body() userDto: CreateUserDto) {
+        return this.usersService.createUser(userDto);
+    }
 
-  @ApiOperation({summary: 'Give roles'})
-  @ApiResponse({status: 200})
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
-  @Post('/role')
-  addRole(@Body() dto: AddRoleDto) {
-    return this.usersService.addRole(dto)
-  }
+    @ApiOperation({ summary: "Get all users" })
+    @ApiResponse({ status: 200, type: [User] })
+    @Roles("ADMIN")
+    @UseGuards(RolesGuard)
+    @Post()
+    getAll() {
+        return this.usersService.getAllUsers();
+    }
 
-  @ApiOperation({summary: 'Ban User'})
-  @ApiResponse({status: 200})
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
-  @Post('/ban')
-  ban(@Body() dto: BanUserDto) {
-    return this.usersService.ban(dto)
-  }
+    @ApiOperation({ summary: "Give roles" })
+    @ApiResponse({ status: 200 })
+    @Roles("ADMIN")
+    @UseGuards(RolesGuard)
+    @Post("/role")
+    addRole(@Body() dto: AddRoleDto) {
+        return this.usersService.addRole(dto);
+    }
+
+    @ApiOperation({ summary: "Ban User" })
+    @ApiResponse({ status: 200 })
+    @Roles("ADMIN")
+    @UseGuards(RolesGuard)
+    @Post("/ban")
+    ban(@Body() dto: BanUserDto) {
+        return this.usersService.ban(dto);
+    }
 }

@@ -5,36 +5,36 @@ import { UserRoles } from "../roles/user-roles.model";
 import { Post } from "../posts/posts.model";
 
 interface UserCreationAttrs {
-  email: string
-  password: string
+    email: string;
+    password: string;
 }
 
 
-@Table({tableName: 'users'})
+@Table({ tableName: "users" })
 export class User extends Model<User, UserCreationAttrs> {
-  @ApiProperty({example: '1', description: 'unique id'})
-  @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
-  id: number
+    @ApiProperty({ example: "1", description: "unique id" })
+    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
+    id: number;
 
-  @ApiProperty({example: 'user@mail.ru', description: 'mail'})
-  @Column({type: DataType.STRING, unique: true, allowNull: false})
-  email: string
+    @ApiProperty({ example: "user@mail.ru", description: "mail" })
+    @Column({ type: DataType.STRING, unique: true, allowNull: false })
+    email: string;
 
-  @ApiProperty({example: '1234', description: 'user pass'})
-  @Column({type: DataType.STRING, allowNull: false })
-  password: string
+    @ApiProperty({ example: "1234", description: "user pass" })
+    @Column({ type: DataType.STRING, allowNull: false })
+    password: string;
 
-  @ApiProperty({example: 'true', description: 'banned or not'})
-  @Column({type: DataType.BOOLEAN, defaultValue: false })
-    banned: boolean
+    @ApiProperty({ example: "true", description: "banned or not" })
+    @Column({ type: DataType.BOOLEAN, defaultValue: false })
+    banned: boolean;
 
-  @ApiProperty({example: 'toxic', description: 'reason'})
-  @Column({type: DataType.STRING, allowNull: true })
-    banReason: string
+    @ApiProperty({ example: "toxic", description: "reason" })
+    @Column({ type: DataType.STRING, allowNull: true })
+    banReason: string;
 
-  @BelongsToMany(() => Role, () => UserRoles)
-  roles: Role[]
+    @BelongsToMany(() => Role, () => UserRoles)
+    roles: Role[];
 
-  @HasMany(() => Post)
-  posts: Post[]
+    @HasMany(() => Post)
+    posts: Post[];
 }
